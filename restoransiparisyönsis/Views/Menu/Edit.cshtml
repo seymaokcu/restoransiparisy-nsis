@@ -1,0 +1,60 @@
+﻿@model restoransiparisyönsis.Models.Menu
+@{
+    ViewData["Title"] = "Menü Düzenle";
+}
+
+<div class="container mt-5">
+    <h2>Menü Düzenle</h2>
+    <hr />
+    <div class="row">
+        <div class="col-md-6">
+            <form asp-action="Edit">
+                <div asp-validation-summary="All" class="text-danger"></div>
+
+                <input type="hidden" asp-for="Id" />
+
+                <div class="form-group mb-3">
+                    <label asp-for="MenuAd" class="control-label"></label>
+                    <input asp-for="MenuAd" class="form-control" />
+                    <span asp-validation-for="MenuAd" class="text-danger"></span>
+                </div>
+
+                <div class="form-group mb-3">
+                    <label asp-for="MenuFiyat" class="control-label"></label>
+                    <input asp-for="MenuFiyat" class="form-control" type="number" step="0.5" /> <span asp-validation-for="MenuFiyat" class="text-danger"></span>
+                </div>
+
+                <div class="form-group mb-3">
+                    <label asp-for="Stok" class="control-label"></label>
+                    <input asp-for="Stok" class="form-control" type="number" />
+                    <span asp-validation-for="Stok" class="text-danger"></span>
+                </div>
+
+                <div class="form-group mb-3">
+                    <label asp-for="ResimYolu" class="control-label">Resim Dosya Adı</label>
+                    <input asp-for="ResimYolu" class="form-control" />
+                    <span asp-validation-for="ResimYolu" class="text-danger"></span>
+
+                    @if (!string.IsNullOrEmpty(Model.ResimYolu))
+                    {
+                        <div class="mt-2">
+                            <small>Mevcut Resim:</small><br />
+                            <img src="~/img/@Model.ResimYolu" width="100" />
+                        </div>
+                    }
+                </div>
+
+                <div class="form-group mt-3">
+                    <input type="submit" value="Güncelle" class="btn btn-primary" />
+                    <a asp-action="Index" class="btn btn-secondary">İptal</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

@@ -1,0 +1,58 @@
+﻿@using Microsoft.AspNetCore.Identity
+@using Microsoft.EntityFrameworkCore
+@model IEnumerable<IdentityUser>
+
+@{
+    ViewData["Title"] = "Kayıtlı Kullanıcılar";
+}
+
+<div class="container mt-5">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2 style="font-family: 'Pacifico', cursive; color: #3e2c2c;">👥 Shame Restaurant Üyeleri</h2>
+        <span class="badge bg-danger rounded-pill fs-6">Toplam: @Model.Count() Üye</span>
+    </div>
+
+    <div class="card shadow-sm border-0" style="border-radius: 15px; overflow: hidden;">
+        <div class="table-responsive">
+            <table class="table table-hover mb-0">
+                <thead class="bg-light text-dark">
+                    <tr>
+                        <th class="p-3">Email Adresi</th>
+                        <th class="p-3">Kullanıcı Adı</th>
+                        <th class="p-3">Üyelik Durumu</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if (!Model.Any())
+                    {
+                        <tr>
+                            <td colspan="3" class="text-center p-5 text-muted">
+                                <i class="fas fa-users-slash fa-2x mb-3"></i><br>
+                                Henüz kayıtlı üye bulunmuyor.
+                            </td>
+                        </tr>
+                    }
+                    else
+                    {
+                        @foreach (var user in Model)
+                        {
+                            <tr>
+                                <td class="p-3 fw-bold text-primary">@user.Email</td>
+                                <td class="p-3">@user.UserName</td>
+                                <td class="p-3">
+                                    <span class="badge bg-success bg-opacity-10 text-success border border-success px-3">Aktif Üye</span>
+                                </td>
+                            </tr>
+                        }
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="mt-4 text-center">
+        <a asp-action="Index" class="btn btn-outline-secondary rounded-pill px-4">
+            <i class="fas fa-arrow-left me-2"></i>Panele Dön
+        </a>
+    </div>
+</div>

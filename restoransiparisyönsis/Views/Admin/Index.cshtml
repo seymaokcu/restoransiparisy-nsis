@@ -1,0 +1,62 @@
+﻿@{
+    ViewData["Title"] = "Yönetici Paneli";
+}
+
+<div class="container mt-4">
+    <h2 class="mb-4" style="font-family: 'Pacifico', cursive; color: #d90429;">Yönetici Paneli</h2>
+
+    <div class="row mb-5">
+        <div class="col-md-4">
+            <div class="card text-white bg-success mb-3 shadow" style="border-radius: 15px;">
+                <div class="card-body text-center">
+                    <h5 class="card-title">Toplam Ciro</h5>
+                    <p class="card-text display-6 fw-bold">@ViewBag.ToplamCiro ₺</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card text-white bg-primary mb-3 shadow" style="border-radius: 15px;">
+                <div class="card-body text-center">
+                    <h5 class="card-title">Toplam Sipariş</h5>
+                    <p class="card-text display-6 fw-bold">@ViewBag.SiparisSayisi</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card text-white bg-warning mb-3 shadow" style="border-radius: 15px;">
+                <div class="card-body text-center">
+                    <h5 class="card-title text-dark">En Çok Satan</h5>
+                    <p class="card-text display-6 fw-bold text-dark">@ViewBag.PopulerMenu</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-6">
+            <div class="card shadow-sm border-0">
+                <div class="card-body">
+                    <h4 class="card-title text-danger">Yönetim Araçları</h4>
+                    <div class="list-group mt-3">
+                        <a asp-action="TumSiparisler" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
+                            📦 Tüm Siparişleri Gör
+                            <span class="badge bg-primary rounded-pill">Git</span>
+                        </a>
+                        <a asp-controller="Menu" asp-action="Index" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
+                            🍔 Menüleri Düzenle
+                            <span class="badge bg-primary rounded-pill">Git</span>
+                        </a>
+                        <a asp-controller="EkstraMalzeme" asp-action="Index" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
+                            🍟 Ekstra Malzemeleri Düzenle
+                            <span class="badge bg-primary rounded-pill">Git</span>
+                        </a>
+                        <a asp-action="Kullanicilar" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
+                            👥 Kayıtlı Kullanıcılar
+                            <span class="badge bg-primary rounded-pill">Git</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,38 @@
+﻿@{
+    ViewData["Title"] = "Sipariş Alındı";
+}
+
+<div class="container mt-5 text-center">
+    <div class="card shadow-lg p-5 border-0 mx-auto" style="max-width: 600px; border-radius: 30px; background-color: #fff;">
+
+        <div class="mb-4">
+            <div style="width: 100px; height: 100px; background-color: #d4edda; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center;">
+                <i class="fas fa-check fa-4x text-success"></i>
+            </div>
+        </div>
+
+        <h2 class="mb-3" style="font-family: 'Pacifico', cursive; color: #d90429;">Siparişiniz Alındı!</h2>
+
+        <p class="lead text-muted">
+            Harika seçim! Siparişiniz mutfağa iletildi ve şeflerimiz hemen hazırlamaya başladı.
+        </p>
+
+        <div class="alert alert-info mt-4 p-3 rounded-3 border-0" style="background-color: #e7f1ff; color: #0c5460;">
+            <i class="fas fa-credit-card me-2"></i>
+            <strong>Ödeme Bilgisi:</strong> Tutar, kayıtlı kartınızdan başarıyla çekilmiştir.
+        </div>
+
+        <div class="mt-4 d-grid gap-2 col-8 mx-auto">
+            <a asp-action="Index" class="btn btn-primary rounded-pill py-2 fw-bold">
+                📦 Siparişlerimi Gör
+            </a>
+            <a asp-controller="Home" asp-action="Index" class="btn btn-outline-secondary rounded-pill py-2">
+                🏠 Anasayfaya Dön
+            </a>
+        </div>
+    </div>
+
+    <div class="mt-5 text-muted opacity-50">
+        <small>Afiyet Olsun! • Shame Restaurant</small>
+    </div>
+</div>

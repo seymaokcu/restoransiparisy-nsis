@@ -1,0 +1,72 @@
+﻿@model restoransiparisyönsis.Models.Siparis
+@{
+    ViewData["Title"] = "Sipariş Oluştur";
+    var ekstralar = ViewBag.EkstraMalzemeler as List<restoransiparisyönsis.Models.EkstraMalzeme>;
+}
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card shadow-lg border-0" style="border-radius: 25px; overflow: hidden;">
+                <div class="row g-0">
+
+                    <div class="col-md-5 bg-light d-flex align-items-center justify-content-center p-3">
+                        @if (!string.IsNullOrEmpty(Model.Menu.ResimYolu))
+                        {
+                            <img src="~/img/@Model.Menu.ResimYolu" class="img-fluid rounded-3 shadow-sm" alt="@Model.Menu.MenuAd">
+                        }
+                        else
+                        {
+                            <div class="text-muted p-5 text-center" style="border: 2px dashed #ccc; border-radius: 15px;">Resim Yok</div>
+                        }
+                    </div>
+
+                    <div class="col-md-7">
+                        <div class="card-body p-4">
+                            <h2 class="text-danger mb-1" style="font-family: 'Pacifico', cursive;">@Model.Menu.MenuAd</h2>
+                            <h4 class="text-success fw-bold mb-3">@Model.Menu.MenuFiyat ₺</h4>
+
+                            <form asp-action="Olustur">
+                                <input type="hidden" asp-for="MenuId" />
+
+                                <div class="mb-4">
+                                    <label class="form-label fw-bold text-dark">Ekstra Malzemeler:</label>
+                                    <div class="d-flex flex-wrap gap-2">
+                                        @if (ekstralar != null)
+                                        {
+                                            foreach (var item in ekstralar)
+                                            {
+                                                <div class="form-check bg-white border rounded-pill px-3 py-1 shadow-sm">
+                                                    <input class="form-check-input" type="checkbox" name="selectedEkstraIds" value="@item.Id" id="ekstra_@item.Id">
+                                                    <label class="form-check-label small" for="ekstra_@item.Id">
+                                                        @item.EkstraMalzemeAd (+@item.EkstraMalzemeFiyat ₺)
+                                                    </label>
+                                                </div>
+                                            }
+                                        }
+                                    </div>
+                                </div>
+
+                                <div class="mb-4">
+                                    <label asp-for="Adet" class="form-label fw-bold text-dark">Kaç Adet?</label>
+                                    <input asp-for="Adet" class="form-control rounded-pill text-center fs-5 fw-bold" style="max-width: 100px; border: 2px solid #ddd;" min="1" value="1" />
+                                </div>
+
+                                <div class="alert alert-warning small rounded-3 border-0">
+                                    <i class="fa fa-info-circle"></i> Toplam tutar, seçimlerinize göre ödeme adımında hesaplanacaktır.
+                                </div>
+
+                                <div class="d-grid gap-2">
+                                    <button type="submit" class="btn btn-primary btn-lg rounded-pill shadow-sm">
+                                        Siparişi Tamamla <i class="fa fa-check ms-2"></i>
+                                    </button>
+                                    <a asp-controller="Home" asp-action="Index" class="btn btn-outline-secondary rounded-pill">Vazgeç</a>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

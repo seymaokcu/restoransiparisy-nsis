@@ -1,0 +1,36 @@
+﻿@model IEnumerable<restoransiparisyönsis.Models.Siparis>
+@{
+    ViewData["Title"] = "Tüm Siparişler";
+}
+
+<div class="container mt-5">
+    <h2 class="mb-4 text-center">Gelen Tüm Siparişler</h2>
+
+    <table class="table table-hover shadow-sm">
+        <thead class="bg-dark text-white">
+            <tr>
+                <th>Tarih</th>
+                <th>Müşteri ID</th>
+                <th>Menü</th>
+                <th>Adet</th>
+                <th>Tutar</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.SiparisTarihi.ToString("dd.MM.yyyy HH:mm")</td>
+                    <td>
+                        <small class="text-muted">@item.UserId</small>
+                    </td>
+                    <td>@item.Menu?.MenuAd</td>
+                    <td>@item.Adet</td>
+                    <td class="fw-bold text-success">@item.ToplamTutar ₺</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    <a asp-action="Index" class="btn btn-secondary mt-3">Panele Dön</a>
+</div>

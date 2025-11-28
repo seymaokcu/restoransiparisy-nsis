@@ -1,0 +1,39 @@
+﻿@model IEnumerable<restoransiparisyönsis.Models.Menu>
+@{
+    ViewData["Title"] = "Menüler";
+}
+
+<div class="container mt-5">
+    <h2>Menü Listesi</h2>
+    <p>
+        <a asp-action="Create" class="btn btn-primary">Yeni Menü Ekle</a>
+    </p>
+    <table class="table table-bordered table-hover">
+        <thead class="thead-dark">
+            <tr>
+                <th>Resim</th>
+                <th>Menü Adı</th>
+                <th>Fiyat</th>
+                <th>Stok</th>
+                <th>İşlemler</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        <img src="~/img/@item.ResimYolu" width="50" height="50" alt="@item.MenuAd" />
+                    </td>
+                    <td>@item.MenuAd</td>
+                    <td>@item.MenuFiyat ₺</td>
+                    <td>@item.Stok</td>
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-warning btn-sm text-white">Düzenle</a>
+                        <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger btn-sm" onclick="return confirm('Silmek istediğinize emin misiniz?');">Sil</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

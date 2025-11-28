@@ -1,0 +1,41 @@
+﻿@model IEnumerable<restoransiparisyönsis.Models.Menu>
+@{
+    ViewData["Title"] = "Ana Sayfa";
+}
+
+<div class="text-center mb-5 py-5" style="background-color: #fff; border-radius: 30px; box-shadow: 0 10px 30px rgba(0,0,0,0.03);">
+    <h1 class="display-3" style="color: #d90429;">Acıkan varsa, buraya!</h1>
+    <p class="lead" style="font-size: 1.4rem;">En doğal, en lezzetli yemekler burada.</p>
+</div>
+
+<div class="container">
+    <div class="row">
+        @foreach (var item in Model)
+        {
+            <div class="col-md-4 mb-4">
+                <div class="card h-100 shadow-sm">
+                    @if (!string.IsNullOrEmpty(item.ResimYolu))
+                    {
+                        <img src="~/img/@item.ResimYolu" class="card-img-top" alt="@item.MenuAd" style="height: 200px; object-fit: contain;">
+                    }
+                    else
+                    {
+                        <img src="https://via.placeholder.com/300x200?text=Resim+Yok" class="card-img-top" alt="Resim Yok">
+                    }
+
+                    <div class="card-body">
+                        <h5 class="card-title">@item.MenuAd</h5>
+                        <p class="card-text text-muted">Stok: @item.Stok</p>
+                        <h4 class="text-success">@item.MenuFiyat ₺</h4>
+                    </div>
+
+                    <div class="card-footer bg-white border-top-0">
+                        <a asp-controller="Siparis" asp-action="Olustur" asp-route-id="@item.Id" class="btn btn-warning w-100 fw-bold">
+                            Sipariş Ver
+                        </a>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
